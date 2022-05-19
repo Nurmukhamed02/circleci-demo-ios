@@ -33,7 +33,7 @@ workflows:
   build:
     jobs:
       - build-and-test:
-          lane: release
+          enum: release
         
           
           
