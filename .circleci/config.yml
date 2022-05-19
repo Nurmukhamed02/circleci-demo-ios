@@ -9,7 +9,7 @@ jobs:
       FASTLANE_LANE: test
     parameters:
       os:
-        default: "linux"
+        default: "test"
         description: The target Operating System for the heroku binary. Must be one of "linux", "darwin", "win32".
         type: enum
         enum: ["test", "beta", "adhoc"]
