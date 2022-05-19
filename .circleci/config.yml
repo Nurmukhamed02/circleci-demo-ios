@@ -11,7 +11,8 @@ jobs:
       lane:
         default: "test"
         description: The target Operating System for the heroku binary. Must be one of "linux", "darwin", "win32".
-        type: string
+        type: enum
+        enum: ["test", "beta", "relese"]
 
     shell: /bin/bash --login -o pipefail
     steps:
@@ -29,11 +30,10 @@ jobs:
  
 
 workflows:
-
   build:
     jobs:
-      - build-and-test:
-          lane: test
+      - build-and-test
+        
           
           
       
