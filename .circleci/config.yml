@@ -7,6 +7,14 @@ jobs:
     environment:
       FL_OUTPUT_DIR: output
       FASTLANE_LANE: test
+    parameters:
+      os:
+        default: "linux"
+        description: The target Operating System for the heroku binary. Must be one of "linux", "darwin", "win32".
+        type: enum
+        enum: ["linux", "darwin", "win32"]
+    steps:
+      - run: echo  << pipeline.parameters.os >>
     shell: /bin/bash --login -o pipefail
     steps:
       - checkout
@@ -58,15 +66,4 @@ workflows:
   build-test-adhoc:
     jobs:
       - build-and-test
-      - adhoc:
-          filters:
-            branches:
-              only: development
-          requires:
-            - build-and-test
-      #- beta:
-          #filters:
-            #branches:
-              #only: master
-          #requires:
-            #- build-and-test
+      
