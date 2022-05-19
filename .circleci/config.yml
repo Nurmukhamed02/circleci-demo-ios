@@ -21,7 +21,7 @@ jobs:
       - run: bundle install
       - run:
           name: Fastlane
-          command: bundle exec fastlane << parameters.os >>
+          command: bundle exec fastlane test #<< parameters.os >>
       - store_artifacts:
           path: output
       - store_test_results:
