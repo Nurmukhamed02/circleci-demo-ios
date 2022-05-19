@@ -12,7 +12,7 @@ jobs:
         default: "test"
         description: The target Operating System for the heroku binary. Must be one of "linux", "darwin", "win32".
         type: enum
-        enum: ["test", "beta", "relese"]
+        enum: ["test", "beta", "release"]
 
     shell: /bin/bash --login -o pipefail
     steps:
