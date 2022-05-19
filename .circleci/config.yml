@@ -8,22 +8,19 @@ jobs:
       FL_OUTPUT_DIR: output
       FASTLANE_LANE: test
     parameters:
-      os:
+      fastlane_lane:
         default: "test"
         description: The target Operating System for the heroku binary. Must be one of "linux", "darwin", "win32".
-        type: enum
-        enum: ["test", "beta", "adhoc"]
+        type: string
 
     shell: /bin/bash --login -o pipefail
     steps:
-      - run: export LC_ALL=en_US.UTF-8
-      - run: export LANG=en_US.UTF-8
       - checkout
       - run: bundle update --bundler
       - run: bundle install
       - run:
           name: Fastlane
-          command: bundle exec fastlane test #<< parameters.os >>
+          command: bundle exec fastlane << parameters.fastlane_lane >>
       - store_artifacts:
           path: output
       - store_test_results:
@@ -35,5 +32,8 @@ workflows:
   version: 2
   build-test-adhoc:
     jobs:
-      - build-and-test
+      - build-and-test:
+          fastlane_lane: test
+          
+          
       
