@@ -8,7 +8,7 @@ jobs:
       FL_OUTPUT_DIR: output
       FASTLANE_LANE: test
     parameters:
-      fastlane:
+      lane:
         default: "test"
         description: The target Operating System for the heroku binary. Must be one of "linux", "darwin", "win32".
         type: string
@@ -20,7 +20,7 @@ jobs:
       - run: bundle install
       - run:
           name: Fastlane
-          command: bundle exec fastlane << parameters.fastlane >>
+          command: bundle exec fastlane << parameters.lane >>
       - store_artifacts:
           path: output
       - store_test_results:
@@ -33,7 +33,7 @@ workflows:
   build-test-adhoc:
     jobs:
       - build-and-test:
-          fastlane: test
+          lane: test
           
           
       
